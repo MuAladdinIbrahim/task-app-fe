@@ -2,33 +2,71 @@ import TodoList from "@/components/TodoList";
 import { Todo } from "@/types";
 import Link from "next/link";
 import React from "react";
-import styles from "./page.module.css"
 
 
 const todos : Todo[] = [
   {
-    id:'',
+    id:1,
     title:'hhhh',
     desc:'llllllllllllllllll',
     status:'done',
-    date:new Date(),
+    date:'6/14/2023, 1:40:23 AM',
+  },
+  {
+    id:4,
+    title:'cmdkcmdkcdk',
+    desc:'dccd, l,dl, l, ld,l,,ld,lldldlddk',
+    status:'todo',
+    date:Date(),
   },
 ]
+// GET
+const getTodos = async ()=>{
+  // const data = await Promise.resolve(todos)
+  // return data;
+  
+  const data = await fetch("",{
+    method: "POST",
+    body: JSON.stringify({
+      query: '{ find(args: {userId: " "}){title} }',
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(res=>res.json())
 
-export default function Home() {
+  return data;
+
+}
+
+// UPDATE 
+const updateStatus = (id : number, status: string)=>{
+  
+}
+// ADD 
+const AddTodo = (todo: Todo)=>{
+  
+}
+// Delete 
+const deleteTodo = (id : string)=>{
+  
+}
+
+export default async function Home() {
+  const TODOS = await getTodos();
   return (
     <>
-      <div className={styles.main}>
-        <div className={styles.container}>
+      <div className={"flex flex-col justify-center items-center"}>
+        <div className={"bg-white p-9 my-20 w-4/6 rounded-lg shadow-xl"}>
 
-          <div className={styles.header}>
-            <h1 className={styles.title}>My Todo List</h1>
+          <div className={"flex justify-between items-center mb-6"}>
+            <h1 className={"text-4xl font-bold"}> 📌 My Todo List </h1>
             <Link href='/add' >
-              <button > Add + </button>
+              <button > Add ✏️ </button>
             </Link>
           </div>
 
-          <TodoList todos={todos} />
+          <TodoList todos={TODOS} />
         </div>
       </div>
     </>

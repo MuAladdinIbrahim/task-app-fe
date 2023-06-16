@@ -1,7 +1,7 @@
 export  type Todo = {
-    id: string
+    id: number
     title: string
-    date: Date
+    date: string
     desc: string
     status: string
   }

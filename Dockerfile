@@ -1,5 +1,5 @@
 # Use official Node.js runtime as parent image
-FROM node:14-alpine
+FROM node:19-alpine
 
 # Set the working directory to /app
 WORKDIR /app
@@ -17,8 +17,8 @@ RUN npm run build
 # Set environment variable for the production server
 ENV NODE_ENV=production
 
-# Expose port 3001 for the server
-EXPOSE 3001
+# Expose port 3000 for the server
+EXPOSE 3000
 
 # Start the server
 CMD ["npm", "start"]

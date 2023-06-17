@@ -26,11 +26,11 @@ function Add() {
 
   const todo = { title, description: desc, userId, status: 'in_progress' }
   
-  const [addTodo, { data, loading, error: err }] = useMutation(ADD_TODO_MUTATTION, { variables: { todo }} );
-  if (loading) return 'Submitting...';
-  if (err) return `Submission error! ${err?.message}`;
+  // const [addTodo, { data, loading, error: err }] = useMutation(ADD_TODO_MUTATTION, { variables: { todo }} );
+  // if (loading) return 'Submitting...';
+  // if (err) return `Submission error! ${err?.message}`;
 
-  console.log({ data });
+  // console.log({ data });
 
   
   const handleAddTodo = async () =>{
@@ -46,7 +46,7 @@ function Add() {
       userId,
       status: 'in_progress'
     }
-    addTodo({ variables: { todo }});
+    // addTodo({ variables: { todo }});
     
     router.push('/')
   }

@@ -1,7 +1,6 @@
 'use client'
 import { TODO } from '@/types';
-import { redirect } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const TodoItem = (props: any) => {
   // PROPs

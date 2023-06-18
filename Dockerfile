@@ -4,15 +4,16 @@ FROM node:19-alpine
 # Set the working directory to /app
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the container
+# Copy Dependencies
 COPY package*.json ./
+COPY yarn.lock ./
 
 
 # Copy the rest of the application code to the container
 COPY . .
 
 # Build the production version of the application
-RUN npm run build
+RUN yarn build
 
 # Set environment variable for the production server
 ENV NODE_ENV=production
@@ -21,4 +22,4 @@ ENV NODE_ENV=production
 EXPOSE 3000
 
 # Start the server
-CMD ["npm", "start"]
+CMD ["yarn", "start"]

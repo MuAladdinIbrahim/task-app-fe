@@ -4,11 +4,11 @@ import React from "react";
 import { getClient } from "@/lib/client";
 import { gql } from "@apollo/client";
 
-const userId = '9f4d25e6-e3d1-4ca5-8a55-13938b7e2a49'
+const userId = '9f4d25e6-e3d1-4ca5-8a55-13938b7e2a49' // hardcoded for now, will be replaced with auth later
 
 const FIND_TASKS_QUERY = gql`
-  query {
-    find(args: {userId: "9f4d25e6-e3d1-4ca5-8a55-13938b7e2a49"}) {
+  query($userId: String!){ 
+    find(args: {userId: $userId}) {
       title,
       description,
       id,
@@ -17,12 +17,11 @@ const FIND_TASKS_QUERY = gql`
   }
 `;
 
-
 export default async function Page() {
   const todoTasks = []
   try {
-    const { data } = await getClient().query({ query: FIND_TASKS_QUERY, variables: { userId }})
-    console.log(`data is received: ${JSON.stringify({data})}`)
+    const { data } = await getClient().query({ query: FIND_TASKS_QUERY, variables: { userId } })
+    console.log(`data is received: ${JSON.stringify({ data })}`)
     const tasks = data?.find || []
     todoTasks.push(...tasks)
   } catch (error: any) {
